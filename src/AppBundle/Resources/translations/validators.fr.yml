@@ -1,0 +1,19 @@
+ChampsObligatoire:
+  Url:
+    Url: "L'url est obligatoire !"
+
+Invalide:
+  Url:
+    Url: "L'url est invalide !"
+
+Min:
+  Url:
+    Url: "L'url doit fait au minimum {{ limit }} caractères !"
+  PassW:
+    PassW: "Le mot de passe doit faire au minimum {{ limit }} caractères "
+
+Max:
+  Url:
+    Url: "L'url doit fait au maximum {{ limit }} caractères !"
+  PassW:
+    PassW: "Le mot de passe doit faire au maximum {{ limit }} caractères !"

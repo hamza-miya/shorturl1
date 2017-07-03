@@ -1,0 +1,61 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block body %}
+
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/"><b>{% trans %}Title{% endtrans %}</b></a>
+            </div>
+        </div>
+    </div>
+
+    <div id="headerwrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h1>{% trans %}FormPSWD.Titre{% endtrans %}</h1>
+                    {{ form_start(formPswd, {'method': 'post', 'attr': {'class': 'form-inline'}}) }}
+
+                        {% if formPswd.vars.errors is not empty %}
+                            <div class="alert alert-warning">
+                                <ul>
+                                    {% for error in formPswd.vars.errors %}
+                                        {% if error.message is not empty %}
+                                            <li>{{ error.message }}</li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+
+                        <div class="form-group">
+                            {{ form_widget(formPswd.password, { 'attr': {'class': 'form-control'}} ) }}
+                        </div>
+
+                        {{ form_widget(formPswd.send, { 'attr': {'class': 'btn btn-warning btn-lg'}} ) }}
+
+                    {{ form_end(formPswd) }}
+
+                    <p></p>
+
+                    {% if app.session.flashBag.has('error') %}
+                        <div class="alert alert-danger text-center">
+                            {% for message in app.session.flashBag.get('error') %}
+                                {{ message }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                </div>
+                <div class="col-lg-6">
+                    {% image '@AppBundle/Resources/public/assets/img/ipad-hand.png' output='images/app/handphone.png' %}
+                        <img src="{{ asset_url }}" alt="Ipad" />
+                    {% endimage %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

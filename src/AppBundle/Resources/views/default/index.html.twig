@@ -1,0 +1,118 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block body %}
+
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/"><b>{% trans %}Title{% endtrans %}</b></a>
+            </div>
+        </div>
+    </div>
+
+    <div id="headerwrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h1>{% trans %}HomePage.Slogan{% endtrans %}</h1>
+                    {{ form_start(formUrl, {'method': 'post', 'attr': {'class': 'form-inline'}}) }}
+
+                        {% if formUrl.vars.errors is not empty %}
+                            <div class="alert alert-warning">
+                                <ul>
+                                    {% for error in formUrl.vars.errors %}
+                                        {% if error.message is not empty %}
+                                            <li>{{ error.message }}</li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+
+                        <div class="form-group">
+                            {{ form_widget(formUrl.url, { 'attr': {'class': 'form-control'}} ) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_widget(formUrl.password, { 'attr': {'class': 'form-control'}} ) }}
+                        </div>
+
+                        {{ form_widget(formUrl.send, { 'attr': {'class': 'btn btn-warning btn-lg'}} ) }}
+
+                    {{ form_end(formUrl) }}
+
+                    <p></p>
+
+                    {% if app.session.flashBag.has('success') %}
+                        <div class="alert alert-success text-center">
+                            {% for message in app.session.flashBag.get('success') %}
+                                {{ message | raw }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    {% if app.session.flashBag.has('error') %}
+                        <div class="alert alert-danger text-center">
+                            {% for message in app.session.flashBag.get('error') %}
+                                {{ message }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                </div>
+                <div class="col-lg-6">
+                    {% image '@AppBundle/Resources/public/assets/img/ipad-hand.png' output='images/app/handphone.png' %}
+                        <img src="{{ asset_url }}" alt="Ipad" />
+                    {% endimage %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row mt centered">
+            <div class="col-lg-6 col-lg-offset-3">
+                <h1>{% trans %}HomePage.Statistics{% endtrans %}</h1>
+            </div>
+        </div>
+
+        <div class="row mt centered">
+            <div class="col-lg-4">
+                {% image '@AppBundle/Resources/public/assets/img/ser01.png' output='images/app/ser01.png' %}
+                    <img src="{{ asset_url }}"  width="100" alt="ser01" />
+                {% endimage %}
+                <h4>{% trans %}HomePage.LastCreated{% endtrans %}</h4>
+                <ul style="list-style-type: none; margin: 0; padding: 0">
+                    {% for urlShorter in lastCreated %}
+                        <li><a target="_blank" href="{{ path('redirectPage', {'Code': urlShorter.code }) }}">{{ app.request.getUri ~ urlShorter.code }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="col-lg-4">
+                {% image '@AppBundle/Resources/public/assets/img/ser02.png' output='images/app/ser02.png' %}
+                    <img src="{{ asset_url }}"  width="100" alt="ser02" />
+                {% endimage %}
+                <h4>{% trans %}HomePage.LastVisited{% endtrans %}</h4>
+                <ul style="list-style-type: none; margin: 0; padding: 0">
+                    {% for urlShorter in lastVisited %}
+                        <li><a target="_blank" href="{{ path('redirectPage', {'Code': urlShorter.code }) }}">{{ app.request.getUri ~ urlShorter.code }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="col-lg-4">
+                {% image '@AppBundle/Resources/public/assets/img/ser03.png' output='images/app/ser03.png' %}
+                    <img src="{{ asset_url }}"  width="100" alt="ser03" />
+                {% endimage %}
+                <h4>{% trans %}HomePage.MoreVisited{% endtrans %}</h4>
+                <ul style="list-style-type: none; margin: 0; padding: 0">
+                    {% for urlShorter in moreVisited %}
+                        <li><a target="_blank" href="{{ path('redirectPage', {'Code': urlShorter['shorter_url_code'] }) }}">{{ app.request.getUri ~ urlShorter['shorter_url_code'] }} ({{ urlShorter['countStats'] }})</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

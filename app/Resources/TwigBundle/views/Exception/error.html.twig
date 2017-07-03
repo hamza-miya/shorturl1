@@ -1,0 +1,37 @@
+{% extends "AppBundle:Layout:layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body %}
+
+    <div class="login-wrapper">
+        <div class="text-center">
+            {% image '@AppBundle/Resources/public/img/logo-final.png' output='/images/app/logo-final.png' %}
+            <img src="{{ asset_url }}" style="width:100px;height:100px;" class="fadeInUp animation-delay5" alt="Garage Advisor" />
+            {% endimage %}
+            <h2 class="fadeInUp animation-delay5" style="font-weight:bold">
+                <span>Garage</span> <span style="color:#ccc; text-shadow:0 1px #fff">Advisor</span>
+            </h2>
+            <h4 class="fadeInUp animation-delay6">Erreur {{ status_code }}</h4>
+        </div>
+        <div class="login-widget animation-delay1">
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix">
+                    <div class="pull-left">
+                        <i class="fa fa-lock fa-lg"></i>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    {% if status_code == 403 %}
+                        <p>Vous n'êtes pas autorisé à accéder à la ressource !</p>
+                    {% elseif status_code == 404 %}
+                        <p>La ressource demandée n'est plus accessible !</p>
+                    {% else %}
+                        <p>Une erreur interne s'est produite !<br/>Veuillez réessayer ultérieurement !</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock body %}

@@ -1,0 +1,31 @@
+"Title": "Url Shorter"
+
+HomePage:
+  Slogan: "Raccourcissez votre url !"
+  Statistics: "Les statistiques"
+  LastCreated: "Les dernieres raccourcies"
+  LastVisited: "Les dernieres visitées"
+  MoreVisited: "Les plus visitées"
+FormPSWD:
+  Titre: "Short url protégée"
+Label:
+  Url:
+    Send: "Raccourcir !"
+  PassW:
+    Send: "GO !"
+
+Placeholder:
+  Url:
+    Url: "http://"
+  PassW:
+    PassW: "Mot de passe"
+Message:
+  FormPSWD:
+    Error: "Mauvais mot de passe !"
+  HomePage:
+    Success:
+      Url:
+        Add: 'Votre url raccourcie: <a target="_blank" href="%Code%">%Code%</a>'
+    Error:
+      Url:
+        Redirect: 'Erreur, cette url n''exsite plus !'
