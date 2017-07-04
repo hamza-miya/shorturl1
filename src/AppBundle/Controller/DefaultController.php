@@ -39,7 +39,7 @@ class DefaultController extends Controller
 
             // Message de confirmation
             $this->addFlash('success', $this->get('translator')->trans('Message.HomePage.Success.Url.Add',
-                array("%Code%" => $request->getUriForPath("/fr/").$urlShorter->getCode())));
+                array("%Code%" => $request->getUriForPath("/").$urlShorter->getCode())));
 
             // Redirection sur la page Home
             return $this->redirectToRoute('homepage');
